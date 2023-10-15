@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Admin Panel',
-        theme: ThemeData.dark().copyWith(),
+        theme: ThemeData.dark(useMaterial3: true).copyWith(),
         // home: MultiProvider(
         //   providers: [],
         //   child: HomeScreen(),
