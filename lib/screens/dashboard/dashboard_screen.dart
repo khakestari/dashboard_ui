@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import './components/header.dart';
 import '../../constants.dart';
 import './components/storage_details.dart';
+import './components/my_files.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -20,18 +21,7 @@ class DashboardScreen extends StatelessWidget {
             children: [
               Expanded(
                 flex: 5,
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'My Files',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                child: MyFiles(),
               ),
               const SizedBox(width: defaultPadding),
               Expanded(
