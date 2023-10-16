@@ -23,7 +23,11 @@ class MyFiles extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             ElevatedButton.icon(
-              style: TextButton.styleFrom(),
+              style: TextButton.styleFrom(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: defaultPadding * 1.5,
+                      vertical: defaultPadding /
+                          (Responsive.isMobile(context) ? 2 : 1))),
               onPressed: () {},
               icon: Icon(Icons.add),
               label: Text('Add New'),
@@ -32,8 +36,12 @@ class MyFiles extends StatelessWidget {
         ),
         SizedBox(height: defaultPadding),
         Responsive(
-          mobile: FileInfoCardGridView(),
-          tablet: FileInfoCardGridView(),
+          mobile: FileInfoCardGridView(
+            childAspectRatio: _size.width < 1400 ? 1.3 : 1,
+            crossAxisCount: _size.width < 650 ? 2 : 4,
+          ),
+          // tablet: FileInfoCardGridView(
+          //     childAspectRatio: _size.width < 1400 ? 1.1 : 1.4),
           desktop: FileInfoCardGridView(
             childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
           ),
@@ -56,11 +64,13 @@ class FileInfoCardGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: demoMyFiles.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,
+        mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) => FilesInfoCard(
